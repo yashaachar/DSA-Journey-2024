@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+
+    int left = 0, right = 0;  // Two pointers
+    unordered_set<char> window;
+    int maxLen = 0;
+    
+    while (right < s.length()) {
+        // If duplicate found, move LEFT pointer
+        while (window.count(s[right])) {
+            window.erase(s[left]);
+            left++;
+        }
+        
+        // Expand RIGHT pointer
+        window.insert(s[right]);
+        right++;
+        
+        // Update maximum window size
+        maxLen = max(maxLen, right - left);
+    }
+    
+    return maxLen;
+}
+        
+        
+    
+};
